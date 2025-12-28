@@ -180,45 +180,10 @@ const bookingModal = document.getElementById('booking-modal');
 const bookingTriggers = document.querySelectorAll('.booking-trigger');
 const bookingClose = document.querySelector('.booking-modal-close');
 const bookingBackdrop = document.querySelector('.booking-modal-backdrop');
-const bookingIframe = document.getElementById('booking-iframe');
-
-let iframeLoaded = false;
 
 function openBookingModal() {
   bookingModal.classList.add('active');
   body.style.overflow = 'hidden';
-
-  // Ładuj iframe tylko raz
-  if (!iframeLoaded && bookingIframe) {
-    const loader = document.getElementById('booking-loader');
-    bookingIframe.src = 'https://api.leadconnectorhq.com/widget/booking/kb90PPVj3YX9hT2cM96O';
-    iframeLoaded = true;
-
-    // Ukryj loader po załadowaniu
-    bookingIframe.addEventListener('load', function() {
-      console.log('Booking iframe loaded successfully');
-      if (loader) {
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
-      }
-    });
-
-    bookingIframe.addEventListener('error', function() {
-      console.error('Error loading booking iframe');
-      const container = document.getElementById('booking-iframe-container');
-      if (container) {
-        container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column; padding: 20px; text-align: center;"><h3 style="color: #e25950; margin-bottom: 16px;">Nie można załadować formularza rezerwacji</h3><p>Proszę spróbować później lub skontaktować się bezpośrednio.</p></div>';
-      }
-    });
-
-    // Ukryj loader po timeout (na wypadek gdyby iframe nie wywołał load event)
-    setTimeout(() => {
-      if (loader && loader.style.display !== 'none') {
-        loader.style.display = 'none';
-      }
-    }, 5000);
-  }
 }
 
 function closeBookingModal() {
