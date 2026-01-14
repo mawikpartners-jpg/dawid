@@ -1750,6 +1750,89 @@ body.menu-open {
   text-align: left;
 }
 
+.sponsors-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: var(--spacing-2xl) 0;
+}
+
+.sponsors-container::before,
+.sponsors-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sponsors-container::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 100%);
+}
+
+.sponsors-container::after {
+  right: 0;
+  background: linear-gradient(90deg, transparent 0%, var(--bg-primary) 100%);
+}
+
+.sponsors-track {
+  display: flex;
+  gap: var(--spacing-3xl);
+  animation: scroll-sponsors 40s linear infinite;
+  width: max-content;
+}
+
+.sponsors-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-sponsors {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsor-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 120px;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.sponsor-slide:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255, 59, 48, 0.2);
+}
+
+.sponsor-logo {
+  max-width: 100%;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.8);
+  transition: all var(--transition-base);
+}
+
+.sponsor-slide:hover .sponsor-logo {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.05);
+}
+
 .footer {
   padding: var(--spacing-3xl) 0;
   background: var(--bg-primary);
@@ -2139,6 +2222,24 @@ body.menu-open {
 
   .availability-note {
     text-align: center;
+  }
+
+  .sponsors-container::before,
+  .sponsors-container::after {
+    width: 50px;
+  }
+
+  .sponsor-slide {
+    min-width: 150px;
+    height: 100px;
+  }
+
+  .sponsor-logo {
+    max-height: 60px;
+  }
+
+  .sponsors-track {
+    gap: var(--spacing-lg);
   }
 
   .footer {
