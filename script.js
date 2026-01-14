@@ -504,7 +504,6 @@ volumeSlider.addEventListener('change', (e) => {
 });
 
 audio.volume = 0.7;
-audio.loop = true;
 
 if ('ontouchstart' in window) {
   progressBar.style.cursor = 'pointer';
@@ -513,3 +512,38 @@ if ('ontouchstart' in window) {
   volumeBtn.style.minWidth = '44px';
   volumeBtn.style.minHeight = '44px';
 }
+
+function attemptAutoplay() {
+  initializeAudioContext();
+
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        audioInitialized = true;
+        updatePlayPauseIcon(true);
+        document.removeEventListener('click', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction);
+        document.removeEventListener('keydown', handleFirstInteraction);
+      })
+      .catch((error) => {
+        console.log('Autoplay blocked, waiting for user interaction');
+        updatePlayPauseIcon(false);
+      });
+  }
+}
+
+function handleFirstInteraction() {
+  if (!audioInitialized || audio.paused) {
+    attemptAutoplay();
+  }
+}
+
+window.addEventListener('load', () => {
+  attemptAutoplay();
+
+  document.addEventListener('click', handleFirstInteraction, { once: true });
+  document.addEventListener('touchstart', handleFirstInteraction, { once: true });
+  document.addEventListener('keydown', handleFirstInteraction, { once: true });
+});
