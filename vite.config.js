@@ -6,7 +6,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        recenze: resolve(__dirname, 'recenze.html')
+        recenze: resolve(__dirname, 'recenze.html'),
+        galeria: resolve(__dirname, 'galeria.html')
       }
     }
   }
