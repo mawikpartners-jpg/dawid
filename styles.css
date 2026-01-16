@@ -1849,11 +1849,8 @@ body.menu-open {
   animation: scroll-sponsors 40s linear infinite;
   width: max-content;
   position: relative;
-  z-index: 3;
-}
-
-.sponsors-track:hover {
-  animation-play-state: paused;
+  z-index: 1;
+  will-change: transform;
 }
 
 @keyframes scroll-sponsors {
@@ -1881,9 +1878,9 @@ body.menu-open {
 
 a.sponsor-slide {
   cursor: pointer;
-  pointer-events: all;
+  pointer-events: auto !important;
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 
 a.sponsor-slide img {
