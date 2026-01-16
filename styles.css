@@ -1874,6 +1874,11 @@ body.menu-open {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+a.sponsor-slide {
+  cursor: pointer;
 }
 
 .sponsor-slide:hover {
