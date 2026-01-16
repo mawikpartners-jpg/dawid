@@ -1848,6 +1848,8 @@ body.menu-open {
   gap: var(--spacing-3xl);
   animation: scroll-sponsors 40s linear infinite;
   width: max-content;
+  position: relative;
+  z-index: 1;
 }
 
 .sponsors-track:hover {
@@ -1879,6 +1881,13 @@ body.menu-open {
 
 a.sponsor-slide {
   cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+a.sponsor-slide img {
+  pointer-events: none;
 }
 
 .sponsor-slide:hover {
